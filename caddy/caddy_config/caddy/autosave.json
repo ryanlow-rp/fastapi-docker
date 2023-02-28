@@ -1,0 +1,1 @@
+{"apps":{"http":{"servers":{"srv0":{"listen":[":443"],"routes":[{"handle":[{"handler":"subroute","routes":[{"handle":[{"handler":"subroute","routes":[{"handle":[{"handler":"rewrite","strip_path_prefix":"/api"}]},{"handle":[{"handler":"reverse_proxy","upstreams":[{"dial":"web:80"}]}]}]}],"match":[{"path":["/api/*"]}]}]}],"match":[{"host":["localhost"]}],"terminal":true}]}}}}}

@@ -1,0 +1,5 @@
+localhost:443 {
+    handle_path /api/* {
+        reverse_proxy web:80
+     }
+}
