@@ -5,6 +5,9 @@ services:
     tty: true
     volumes:
       - ./web/app:/usr/src/app/app
+    depends_on:
+      db:
+        condition: service_healthy
   caddy:
     image: caddy:2.6.4-alpine
     container_name: caddy
@@ -19,7 +22,29 @@ services:
       - ./caddy/site:/srv
       - ./caddy/caddy_data:/data
       - ./caddy/caddy_config:/config
+  db:
+    build: ./db
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pgpassword
+      POSTGRES_USER: pguser
+      POSTGRES_DB: pgdb
+    healthcheck:
+      interval : 1s
+      timeout: 5s
+      retries: 10
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
 
 volumes:
   caddy_data:
   caddy_config:
+  pgdata:
