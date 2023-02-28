@@ -5,6 +5,7 @@ services:
     tty: true
     volumes:
       - ./web/app:/usr/src/app/app
+      - ./web/tests:/usr/src/app/tests
     env_file:
       - ./.env
     depends_on:

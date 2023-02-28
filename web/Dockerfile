@@ -1,5 +1,7 @@
 FROM python:3.8-slim-buster
 WORKDIR /usr/src/app
+ENV FORCE_COLOR 1
+EXPOSE 80
 
 RUN pip install --upgrade pip
 COPY ./requirements.txt /usr/src/app/requirements.txt
