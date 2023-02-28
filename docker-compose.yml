@@ -1,7 +1,12 @@
 services:
-  app1:
-    build: ./app1
-    container_name: app1
+  web:
+    build: ./web
+    container_name: web
+    tty: true
+    ports:
+      - 80:80
+    volumes:
+      - ./web/app:/usr/src/app/app
   app2:
     build: ./app2
     container_name: app2
