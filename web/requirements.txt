@@ -1,3 +1,9 @@
+# app
 fastapi[all]
 pydantic==1.10.5
 uvicorn[standard]
+# db
+databases[postgresql]
+SQLAlchemy==1.4.46
+alembic==1.9.4
+psycopg2-binary==2.9.5
